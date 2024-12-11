@@ -1,0 +1,13 @@
+package com.hamcoding.dreamcatcher.domain.model
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class BucketItem(
+    @PrimaryKey val id: Int? = null,
+    val content: String,
+    val isAchieved: Boolean,
+    val image: String,
+    val achievedDate: String
+)
