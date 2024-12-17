@@ -1,7 +1,8 @@
-package com.hamcoding.dreamcatcher.data
+package com.hamcoding.dreamcatcher.data.repository
 
 import com.hamcoding.dreamcatcher.data.source.BucketDao
 import com.hamcoding.dreamcatcher.domain.model.BucketItem
+import com.hamcoding.dreamcatcher.domain.repository.BucketRepository
 import kotlinx.coroutines.flow.Flow
 
 class BucketRepositoryImpl(

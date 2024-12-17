@@ -1,4 +1,4 @@
-package com.hamcoding.dreamcatcher.data
+package com.hamcoding.dreamcatcher.domain.repository
 
 import com.hamcoding.dreamcatcher.domain.model.BucketItem
 import kotlinx.coroutines.flow.Flow
