@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DreamCatcher"
+rootProject.name = "Mongle"
 include(":app")
  

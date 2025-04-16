@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.hamcoding.dreamcatcher"
+    namespace = "com.hamcoding.mongle"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.hamcoding.dreamcatcher"
+        applicationId = "com.hamcoding.mongle"
         minSdk = 29
         targetSdk = 33
         versionCode = 1
