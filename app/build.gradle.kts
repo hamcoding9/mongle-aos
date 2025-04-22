@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -50,11 +50,15 @@ android {
 
 dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.4")
-    implementation("androidx.room:room-runtime:2.6.1")
 
-    //Hilt
+    // Database
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    // Dependency Injection
     implementation ("com.google.dagger:hilt-android:2.53.1")
-    kapt ("com.google.dagger:hilt-compiler:2.53.1")
+    ksp ("com.google.dagger:hilt-compiler:2.53.1")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
