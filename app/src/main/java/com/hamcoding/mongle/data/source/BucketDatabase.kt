@@ -2,10 +2,10 @@ package com.hamcoding.mongle.data.source
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.hamcoding.mongle.domain.model.BucketItem
+import com.hamcoding.mongle.domain.model.Bucket
 
 @Database(
-    entities = [BucketItem::class],
+    entities = [Bucket::class],
     version = 1
 )
 abstract class BucketDatabase : RoomDatabase() {
