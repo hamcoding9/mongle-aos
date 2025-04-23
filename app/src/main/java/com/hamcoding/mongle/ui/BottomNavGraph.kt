@@ -14,7 +14,7 @@ fun BottomNavGraph(navController: NavHostController) {
         startDestination = BottomBarScreen.List.route
     ) {
         composable(route = BottomBarScreen.List.route) {
-            ListScreen()
+            //ListScreen()
         }
         composable(route = BottomBarScreen.Achieved.route) {
             AchievedScreen()
