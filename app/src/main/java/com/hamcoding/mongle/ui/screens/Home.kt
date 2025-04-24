@@ -17,6 +17,7 @@ import com.hamcoding.mongle.ui.components.CompleteDialog
 
 @Composable
 fun ListScreen(
+    modifier: Modifier = Modifier,
     bucketList: List<Bucket>
 ) {
     var targetBucket by remember { mutableStateOf<Bucket?>(null) }
@@ -49,5 +50,5 @@ fun ListScreenPreview() {
     val buckets = listOf(
         Bucket(content = "버킷 아이템 1"),
     )
-    ListScreen(buckets)
+    ListScreen(bucketList = buckets)
 }
