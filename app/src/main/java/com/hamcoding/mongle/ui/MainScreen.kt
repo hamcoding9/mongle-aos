@@ -1,11 +1,10 @@
 package com.hamcoding.mongle.ui
 
+import androidx.collection.mutableIntSetOf
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -14,14 +13,21 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.hamcoding.mongle.domain.model.Bucket
+import com.hamcoding.mongle.ui.icon.MongleIcons
+import com.hamcoding.mongle.ui.screens.AchievedScreen
 import com.hamcoding.mongle.ui.screens.ListScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
+    var selectedItem by rememberSaveable { mutableIntStateOf(0) }
     val buckets = listOf(
         Bucket(content = "버킷 아이템 1"),
         Bucket(content = "버킷 아이템 2"),
@@ -33,60 +39,53 @@ fun MainScreen() {
     )
 
     Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-
-                }
-            ) {
-               Icon(
-                   imageVector = Icons.Default.Add,
-                   contentDescription = "add bucket"
-               )
-            }
-        },
         bottomBar = {
-            BottomBar()
+            BottomBar(
+                onTabSelected = { selectedItem = it },
+                selectedItem = selectedItem
+            )
         }
     ) { innerPadding ->
-        ListScreen(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            bucketList = buckets
-        )
+        when (selectedItem) {
+            0 -> {
+                ListScreen(
+                    bucketList = buckets,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                )
+            }
+            1 -> {
+                AchievedScreen()
+            }
+        }
     }
 }
 
 @Composable
-private fun BottomBar() {
+private fun BottomBar(
+    onTabSelected: (Int) -> Unit,
+    selectedItem: Int
+) {
+    val items = listOf("List", "Achieved")
+    val icons = listOf(
+        MongleIcons.List,
+        MongleIcons.Star
+    )
     BottomAppBar {
-        NavigationBarItem(
-            selected = true,
-            onClick = {},
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.List,
-                    contentDescription = "list bar"
-                )
-            },
-            label = {
-                Text("List")
-            }
-        )
-        NavigationBarItem(
-            selected = true,
-            onClick = {},
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Star,
-                    contentDescription = "achieved bar"
-                )
-            },
-            label = {
-                Text("Achieved")
-            }
-        )
+        items.forEachIndexed { index, item ->
+            NavigationBarItem(
+                icon = {
+                    Icon(
+                        imageVector = icons[index],
+                        contentDescription = item
+                    )
+                },
+                label = { Text(item) },
+                selected = selectedItem == index,
+                onClick = { onTabSelected(index) },
+            )
+        }
     }
 }
 

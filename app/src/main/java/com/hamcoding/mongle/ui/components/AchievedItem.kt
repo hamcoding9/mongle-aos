@@ -20,12 +20,14 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AchievedItem() {
     Column(
-        modifier = Modifier.padding(10.dp)
+        modifier = Modifier
+            .padding(10.dp)
+            .background(Color.White)
     ) {
         Box(
             modifier = Modifier
                 .size(400.dp)
-                .background(color = Color.Blue)
+                .background(color = Color.LightGray)
         )
         Text(
             text = "비싼 레스토랑 가기"
