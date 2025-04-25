@@ -14,23 +14,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import com.hamcoding.mongle.domain.model.Bucket
 
 @Composable
-fun AchievedItem() {
+fun AchievedItem(bucket: Bucket) {
     Column(
         modifier = Modifier
             .padding(10.dp)
             .background(Color.White)
     ) {
-        Box(
-            modifier = Modifier
-                .size(400.dp)
-                .background(color = Color.LightGray)
+        AsyncImage(
+            model = bucket.image,
+            contentDescription = "My Achieved Image",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(400.dp)
         )
         Text(
-            text = "비싼 레스토랑 가기"
+            text = bucket.content
         )
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -40,7 +44,7 @@ fun AchievedItem() {
                 contentDescription = "date icon"
             )
             Text(
-                text = "2024.12.04"
+                text = bucket.achievedDate.toString()
             )
         }
     }
@@ -49,5 +53,9 @@ fun AchievedItem() {
 @Composable
 @Preview
 fun AchievedItemPreview() {
-    AchievedItem()
+    val sample = Bucket(
+        content = "성심당 가기",
+        achievedDate = "2023.09.12"
+    )
+    AchievedItem(sample)
 }
